@@ -3,11 +3,12 @@ FROM --platform=${TARGETPLATFORM} node:alpine
 RUN npm install pm2 -g
 
 WORKDIR /app
-COPY . .
-RUN rm -rf noname-server.exe .git .github README.md Dockerfile .gitignore .dockerignore
-RUN npm install
 
-EXPOSE 80
-EXPOSE 8080
+RUN rm -rf noname-server.exe .git .github README.md Dockerfile .gitignore .dockerignore
+RUN npm install ws body-parser express minimist
+COPY . .
+
+EXPOSE 8081
+EXPOSE 8082
 
 CMD [ "pm2-runtime", "process.yml" ]

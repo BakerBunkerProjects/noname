@@ -2,6 +2,10 @@ apps:
   - script: noname-server.js
     name: 'main-game'
     args:
-      - --port=80
+      - --port=8081
+      - --experimental-default-type=module
+      - --server
   - script: game/server.js
     name: 'game-lobby'
+    args:
+      - --experimental-default-type=commonjs
