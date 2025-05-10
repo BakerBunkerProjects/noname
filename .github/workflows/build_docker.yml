@@ -18,6 +18,9 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: set env
+        run: echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -29,4 +32,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: bakerbunker/noname:latest
+          tags: bakerbunker/noname:${{env.NOW}}
